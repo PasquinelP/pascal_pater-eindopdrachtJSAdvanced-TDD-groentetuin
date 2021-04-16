@@ -170,13 +170,13 @@ const environmentFactors = {
 };
 
 ```
-2 doe deze berekening met meerdere omgevingsfactoren
-3 zorg dat je niet-relevante omgevingsfactoren negeert in je berekeningen
-4 bereken de opbrengst in kilo's van een crop `getYieldForCrop`, neem omgevingsfactoren mee in je berekening
-5 bereken de totale opbrengst van meerdere crops `getTotalYield`, neem omgevingsfactoren mee in je berekening
-6 bereken de inkomsten van een crop `getRevenueForCrop`, neem omgevingsfactoren mee in je berekening
-7 bereken de winst van een crop `getProfitForCrop`, neem omgevingsfactoren mee in je berekening
-8 bereken de winst voor meerdere crops `getTotalProfit`, neem omgevingsfactoren mee in je berekening
+2. doe deze berekening met meerdere omgevingsfactoren
+3. zorg dat je niet-relevante omgevingsfactoren negeert in je berekeningen
+4. bereken de opbrengst in kilo's van een crop `getYieldForCrop`, neem omgevingsfactoren mee in je berekening
+5. bereken de totale opbrengst van meerdere crops `getTotalYield`, neem omgevingsfactoren mee in je berekening
+6. bereken de inkomsten van een crop `getRevenueForCrop`, neem omgevingsfactoren mee in je berekening
+7. bereken de winst van een crop `getProfitForCrop`, neem omgevingsfactoren mee in je berekening
+8. bereken de winst voor meerdere crops `getTotalProfit`, neem omgevingsfactoren mee in je berekening
 
 
 Dus als voorbeeld voor de eerste stap "bereken de kosten voor een crop".
