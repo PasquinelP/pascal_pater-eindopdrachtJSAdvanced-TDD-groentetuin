@@ -5,4 +5,14 @@ const getYieldForPlant = (plant) => {
 };
 
 
-module.exports = { getYieldForPlant };
+const getYieldForCrop = (crop) => {
+  const plantYield = getYieldForPlant(crop.crop);
+  const numCrops = crop.numCrops;
+  const yieldForCrop = plantYield * numCrops;
+  return yieldForCrop;
+}
+
+
+
+
+module.exports = { getYieldForPlant, getYieldForCrop };
