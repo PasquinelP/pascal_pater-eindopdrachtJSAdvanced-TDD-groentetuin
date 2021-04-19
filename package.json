@@ -1,0 +1,17 @@
+{
+  "name": "level-30-eindopdracht-tdd-groentetuin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "farm.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  },
+  "dependencies": {
+    "@types/jest": "^26.0.22"
+  }
+}
