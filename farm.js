@@ -10,9 +10,18 @@ const getYieldForCrop = (crop) => {
   const numCrops = crop.numCrops;
   const yieldForCrop = plantYield * numCrops;
   return yieldForCrop;
-}
+};
+
+
+const getTotalYield = ({crops}) => {
+  const totalYield = crops.map((crop) => {
+    return getYieldForCrop(crop);
+  }).reduce((acc, cValue) => {
+    return acc + cValue;
+  });
+  return totalYield;
+};
 
 
 
-
-module.exports = { getYieldForPlant, getYieldForCrop };
+module.exports = { getYieldForPlant, getYieldForCrop, getTotalYield };
