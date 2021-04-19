@@ -1,10 +1,12 @@
+// Create the functions for the given tests getYieldForPlant, getYieldForCrop and getTotalYield
 
+// get yield for specific plant
 const getYieldForPlant = (plant) => {
   const yieldForPlant = plant.yield;
   return yieldForPlant;
 };
 
-
+// calculate yield for entire crop of specific plant
 const getYieldForCrop = (crop) => {
   const plantYield = getYieldForPlant(crop.crop);
   const numCrops = crop.numCrops;
@@ -12,10 +14,12 @@ const getYieldForCrop = (crop) => {
   return yieldForCrop;
 };
 
-
+// calculate total yield of crops of several plants
 const getTotalYield = ({crops}) => {
+  // go through crops and get yield for each crop
   const totalYield = crops.map((crop) => {
     return getYieldForCrop(crop);
+    // add the yield for each crop to get total yield
   }).reduce((acc, cValue) => {
     return acc + cValue;
   });
