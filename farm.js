@@ -26,7 +26,7 @@ const getTotalYield = ({crops}) => {
   return totalYield;
 };
 
-// Step 1: calculate the cost for a crop: getCostsForCrop
+// Step 1: calculate the cost for a crop
 const getCostsForCrop = (crop) => {
   const costsCrop = crop.crop.costs;
   const numCrops = crop.numCrops;
@@ -34,10 +34,21 @@ const getCostsForCrop = (crop) => {
   return costsForCrop;
 }
 
+// Step 2: calculate revenue for a crop (with no environment factors)
+const getRevenueForCrop = (crop) => {
+  // sale_price is per kg, so we need yield for crop * sale_price
+  const yieldForCrop = getYieldForCrop(crop);
+  const salePrice = crop.crop.salePrice;
+  const revenueForCrop = yieldForCrop * salePrice;
+  return revenueForCrop;
+};
+
+
 
 module.exports = {
   getYieldForPlant,
   getYieldForCrop,
   getTotalYield,
   getCostsForCrop,
+  getRevenueForCrop,
 };
