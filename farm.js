@@ -52,6 +52,17 @@ const getProfitForCrop = (crop) => {
   return profitForCrop;
 }
 
+// Step 4: calculate the profit for multiple crops (with no environment factors)
+const getTotalProfit = ({crops}) => {
+  // go through crops and get profit for each crop
+  const totalProfit = crops.map((crop) => {
+      return getProfitForCrop(crop);
+      // add the profit for each crop to get total profit
+    }).reduce((acc, cValue) => {
+      return acc + cValue;
+    });
+  return totalProfit;
+}
 
 
 module.exports = {
@@ -61,4 +72,5 @@ module.exports = {
   getCostsForCrop,
   getRevenueForCrop,
   getProfitForCrop,
+  getTotalProfit,
 };
