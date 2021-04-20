@@ -5,6 +5,7 @@ const {
   getCostsForCrop,
   getRevenueForCrop,
   getProfitForCrop,
+  getTotalProfit,
 } = require("./farm");
 
 // Create the functions for the following given tests getYieldForPlant, getYieldForCrop and getTotalYield
@@ -109,5 +110,29 @@ describe("getProfitForCrop", () => {
       numCrops: 10,
     };
     expect(getProfitForCrop(input)).toBe(50);
+  });
+});
+
+// Step 4: calculate the profit for multiple crops (with no environment factors): getTotalProfit
+
+describe("getTotalProfit", () => {
+  test("Calculate the profit for multiple crops (no environment factors)", () => {
+    const corn = {
+      name: "corn",
+      yield: 3,
+      costs: 1,
+      salePrice: 2,
+    };
+    const pumpkin = {
+      name: "pumpkin",
+      yield: 4,
+      costs: 2,
+      salePrice: 4,
+    };
+    const crops = [
+      { crop: corn, numCrops: 10 },
+      { crop: pumpkin, numCrops: 2 },
+    ];
+    expect(getTotalProfit({crops})).toBe(78);
   });
 });
