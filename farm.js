@@ -43,6 +43,15 @@ const getRevenueForCrop = (crop) => {
   return revenueForCrop;
 };
 
+// Step 3: calculate the profit for a crop (with no environment factors)
+const getProfitForCrop = (crop) => {
+  // profit for crop = revenue for crop - costs for crop
+  const revenueForCrop = getRevenueForCrop(crop);
+  const costForCrop = getCostsForCrop(crop);
+  const profitForCrop = revenueForCrop - costForCrop;
+  return profitForCrop;
+}
+
 
 
 module.exports = {
@@ -51,4 +60,5 @@ module.exports = {
   getTotalYield,
   getCostsForCrop,
   getRevenueForCrop,
+  getProfitForCrop,
 };
