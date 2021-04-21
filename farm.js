@@ -14,12 +14,7 @@ const getTotalYield = ({ crops }) => crops
   .reduce((acc, cValue) => acc + cValue);
 
 // Step 1: calculate the cost for a crop
-const getCostsForCrop = (crop) => {
-  const costsCrop = crop.crop.costs;
-  const numCrops = crop.numCrops;
-  const costsForCrop = costsCrop * numCrops;
-  return costsForCrop;
-}
+const getCostsForCrop = crop => crop.crop.costs * crop.numCrops;
 
 // Step 2: calculate revenue for a crop (with no environment factors)
 const getRevenueForCrop = (crop) => {
