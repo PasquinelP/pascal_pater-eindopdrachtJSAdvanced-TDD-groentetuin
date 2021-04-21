@@ -4,12 +4,7 @@
 const getYieldForPlant = plant => plant.yield;
 
 // calculate yield for entire crop of specific plant
-const getYieldForCrop = (crop) => {
-  const plantYield = getYieldForPlant(crop.crop);
-  const numCrops = crop.numCrops;
-  const yieldForCrop = plantYield * numCrops;
-  return yieldForCrop;
-};
+const getYieldForCrop = crop => getYieldForPlant(crop.crop) * crop.numCrops;
 
 // calculate total yield of crops of several plants
 const getTotalYield = ({crops}) => {
