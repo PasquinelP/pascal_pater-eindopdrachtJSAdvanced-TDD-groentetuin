@@ -1,10 +1,7 @@
 // Create the functions for the given tests getYieldForPlant, getYieldForCrop and getTotalYield
 
 // get yield for specific plant
-const getYieldForPlant = (plant) => {
-  const yieldForPlant = plant.yield;
-  return yieldForPlant;
-};
+const getYieldForPlant = plant => plant.yield;
 
 // calculate yield for entire crop of specific plant
 const getYieldForCrop = (crop) => {
