@@ -21,13 +21,8 @@ const getCostsForCrop = crop => crop.crop.costs * crop.numCrops;
 const getRevenueForCrop = crop => getYieldForCrop(crop) * crop.crop.salePrice;
 
 // Step 3: calculate the profit for a crop (with no environment factors)
-const getProfitForCrop = (crop) => {
   // profit for crop = revenue for crop - costs for crop
-  const revenueForCrop = getRevenueForCrop(crop);
-  const costForCrop = getCostsForCrop(crop);
-  const profitForCrop = revenueForCrop - costForCrop;
-  return profitForCrop;
-}
+const getProfitForCrop = crop => getRevenueForCrop(crop) - getCostsForCrop(crop);
 
 // Step 4: calculate the profit for multiple crops (with no environment factors)
 const getTotalProfit = ({crops}) => {
