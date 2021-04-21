@@ -17,13 +17,8 @@ const getTotalYield = ({ crops }) => crops
 const getCostsForCrop = crop => crop.crop.costs * crop.numCrops;
 
 // Step 2: calculate revenue for a crop (with no environment factors)
-const getRevenueForCrop = (crop) => {
   // sale_price is per kg, so we need yield for crop * sale_price
-  const yieldForCrop = getYieldForCrop(crop);
-  const salePrice = crop.crop.salePrice;
-  const revenueForCrop = yieldForCrop * salePrice;
-  return revenueForCrop;
-};
+const getRevenueForCrop = crop => getYieldForCrop(crop) * crop.crop.salePrice;
 
 // Step 3: calculate the profit for a crop (with no environment factors)
 const getProfitForCrop = (crop) => {
