@@ -7,16 +7,11 @@ const getYieldForPlant = plant => plant.yield;
 const getYieldForCrop = crop => getYieldForPlant(crop.crop) * crop.numCrops;
 
 // calculate total yield of crops of several plants
-const getTotalYield = ({crops}) => {
+const getTotalYield = ({ crops }) => crops
   // go through crops and get yield for each crop
-  const totalYield = crops.map((crop) => {
-    return getYieldForCrop(crop);
-    // add the yield for each crop to get total yield
-  }).reduce((acc, cValue) => {
-    return acc + cValue;
-  });
-  return totalYield;
-};
+  .map((crop) => getYieldForCrop(crop))
+  // add the yield for each crop to get total yield
+  .reduce((acc, cValue) => acc + cValue);
 
 // Step 1: calculate the cost for a crop
 const getCostsForCrop = (crop) => {
