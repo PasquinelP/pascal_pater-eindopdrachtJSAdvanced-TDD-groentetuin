@@ -25,16 +25,11 @@ const getRevenueForCrop = crop => getYieldForCrop(crop) * crop.crop.salePrice;
 const getProfitForCrop = crop => getRevenueForCrop(crop) - getCostsForCrop(crop);
 
 // Step 4: calculate the profit for multiple crops (with no environment factors)
-const getTotalProfit = ({crops}) => {
+const getTotalProfit = ({crops}) => crops
   // go through crops and get profit for each crop
-  const totalProfit = crops.map((crop) => {
-      return getProfitForCrop(crop);
-      // add the profit for each crop to get total profit
-    }).reduce((acc, cValue) => {
-      return acc + cValue;
-    });
-  return totalProfit;
-}
+  .map(crop => getProfitForCrop(crop))
+  // add the profit for each crop to get total profit
+  .reduce((acc, cValue) => acc + cValue);
 
 
 module.exports = {
