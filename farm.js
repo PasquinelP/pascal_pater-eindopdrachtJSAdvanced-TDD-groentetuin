@@ -34,7 +34,13 @@ const getYieldForPlant = (plant, environmentFactors = 0) => {
 
 
 // calculate yield for entire crop of specific plant
-const getYieldForCrop = crop => getYieldForPlant(crop.crop) * crop.numCrops;
+const getYieldForCrop = (crop, environmentFactors) => {
+if (!environmentFactors) {
+  return crop.crop.yield * crop.numCrops;
+} else {
+  getYieldForPlant(crop.crop, environmentFactors) * crop.numCrops;
+}
+};
 
 // calculate total yield of crops of several plants
 const getTotalYield = ({ crops }) => crops
@@ -52,14 +58,19 @@ const getRevenueForCrop = crop => getYieldForCrop(crop) * crop.crop.salePrice;
 
 // Step 3: calculate the profit for a crop (with no environment factors)
   // profit for crop = revenue for crop - costs for crop
-const getProfitForCrop = crop => getRevenueForCrop(crop) - getCostsForCrop(crop);
-
+const getProfitForCrop = (crop, environmentFactors) => {
+  if(!environmentFactors) {
+    return getRevenueForCrop(crop) - getCostsForCrop(crop);
+  }
+}
+  
 // Step 4: calculate the profit for multiple crops (with no environment factors)
-const getTotalProfit = ({crops}) => crops
-  // go through crops and get profit for each crop
-  .map(crop => getProfitForCrop(crop))
-  // add the profit for each crop to get total profit
-  .reduce((acc, cValue) => acc + cValue);
+const getTotalProfit = ({ crops }, environmentFactors) =>
+  crops
+    // go through crops and get profit for each crop
+    .map((crop) => getProfitForCrop(crop, environmentFactors))
+    // add the profit for each crop to get total profit
+    .reduce((acc, cValue) => acc + cValue);
 
 
 module.exports = {
