@@ -1,7 +1,37 @@
 // Create the functions for the given tests getYieldForPlant, getYieldForCrop and getTotalYield
 
+
 // get yield for specific plant
-const getYieldForPlant = plant => plant.yield;
+// use optional parameters to account for calling function without second parameter
+const getYieldForPlant = (plant, environmentFactors = 0) => {
+  if (!environmentFactors) {
+    console.log("No ef" + plant.yield);
+   return plant.yield;
+  } 
+
+// how to get keys-values from object
+// https://dmitripavlutin.com/access-object-keys-values-entries/#3-objectentries-returns-entries
+  for (const [factor, impact] of Object.entries(environmentFactors)) {
+    const evFactor = plant.factors[factor];
+    const evFactorPercentage = evFactor[impact];
+    const calculatedYield = (plant.yield * (100 + evFactorPercentage)) / 100;
+    console.log(`The ${factor} percentage is ${evFactorPercentage}`);
+    if (factor === "sun") {
+      plant.yield = calculatedYield;
+    } else if (factor === "wind") {
+      plant.yield = calculatedYield;
+    } else if (factor === "sun" && factor === "wind") {
+      const calculationSun = calculatedYield;
+      const calculationWind = calculatedYield;
+      const calculatedTotal = calculationSun * calculationWind;
+      plant.yield = calculatedTotal;
+    }
+  };
+  return plant.yield;
+};
+
+// console.log(getYieldForPlant(corn, environmentFactors));
+
 
 // calculate yield for entire crop of specific plant
 const getYieldForCrop = crop => getYieldForPlant(crop.crop) * crop.numCrops;
