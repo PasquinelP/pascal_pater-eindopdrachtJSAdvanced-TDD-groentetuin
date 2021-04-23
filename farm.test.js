@@ -16,7 +16,7 @@ describe("getYieldForPlant", () => {
     yield: 30,
   };
 
-  test("Get yield for plant with no environment factors", () => {
+  test.only("Get yield for plant with no environment factors", () => {
     expect(getYieldForPlant(corn)).toBe(30);
   });
 });
@@ -134,5 +134,30 @@ describe("getTotalProfit", () => {
       { crop: pumpkin, numCrops: 2 },
     ];
     expect(getTotalProfit({crops})).toBe(78);
+  });
+});
+
+// Create tests including environmental factors
+
+describe("getYieldForPlant", () => {
+
+  const corn = {
+    name: "corn",
+    yield: 30,
+    factors: {
+      sun: {
+        low: -50,
+        medium: 0,
+        high: 50,
+      },
+    },
+  };
+
+  const environmentFactors = {
+    sun: "low",
+  };
+
+  test.only("Get yield for plant with environment factors", () => {
+    expect(getYieldForPlant(corn, environmentFactors)).toBe(15);
   });
 });
