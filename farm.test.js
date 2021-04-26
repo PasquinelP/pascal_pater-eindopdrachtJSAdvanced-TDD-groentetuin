@@ -254,6 +254,100 @@ describe("getTotalProfit", () => {
     ];
     expect(getTotalProfit({crops})).toBe(78);
   });
+
+  test("Calculate the profit for multiple crops with environment factors, sun low", () => {
+    const corn = {
+      name: "corn",
+      yield: 3,
+      costs: 1,
+      salePrice: 2,
+      factors: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+      },
+    };
+
+    const pumpkin = {
+      name: "pumpkin",
+      yield: 4,
+      costs: 2,
+      salePrice: 4,
+      factors: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+      },
+    };
+
+    const crops = [
+      { crop: corn, numCrops: 10 },
+      { crop: pumpkin, numCrops: 2 },
+    ];
+
+    const environmentFactors = {
+      sun: "low",
+    };
+
+    expect(getTotalProfit({ crops }, environmentFactors)).toBe(32);
+  });
+
+  test("Calculate the profit for multiple crops with environment factors, sun low, wind medium", () => {
+    const corn = {
+      name: "corn",
+      yield: 3,
+      costs: 1,
+      salePrice: 2,
+      factors: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+        wind: {
+          low: 0,
+          medium: -30,
+          high: -60,
+        },
+      },
+    };
+
+    const pumpkin = {
+      name: "pumpkin",
+      yield: 4,
+      costs: 2,
+      salePrice: 4,
+      factors: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+        wind: {
+          low: 0,
+          medium: -30,
+          high: -60,
+        },
+      },
+    };
+
+    const crops = [
+      { crop: corn, numCrops: 10 },
+      { crop: pumpkin, numCrops: 2 },
+    ];
+
+    const environmentFactors = {
+      sun: "low",
+      wind: "medium",
+    };
+
+    expect(getTotalProfit({ crops }, environmentFactors)).toBe(18.2);
+  });
+
 });
 
 // Create tests including environmental factors
