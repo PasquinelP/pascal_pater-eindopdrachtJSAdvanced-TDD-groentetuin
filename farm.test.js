@@ -93,6 +93,64 @@ describe("getRevenueForCrop", () => {
     };
     expect(getRevenueForCrop(input)).toBe(60);
   });
+
+  test("Calculate revenue for a crop with environment factors, sun low", () => {
+    const corn = {
+      name: "corn",
+      yield: 3,
+      salePrice: 2,
+      factors: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+      },
+    };
+
+    const input = {
+      crop: corn,
+      numCrops: 10,
+    };
+
+    const environmentFactors = {
+      sun: "low",
+    };
+
+    expect(getRevenueForCrop(input, environmentFactors)).toBe(30);
+  });
+
+  test("Calculate revenue for a crop with environment factors, sun low, wind medium", () => {
+    const corn = {
+      name: "corn",
+      yield: 3,
+      salePrice: 2,
+      factors: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+        wind: {
+          low: 0,
+          medium: -30,
+          high: -60,
+        },
+      },
+    };
+
+    const input = {
+      crop: corn,
+      numCrops: 10,
+    };
+
+    const environmentFactors = {
+      sun: "low",
+      wind: "medium",
+    };
+
+    expect(getRevenueForCrop(input, environmentFactors)).toBe(21);
+  });
 });
 
 // Step 3: calculate the profit for a crop (with no environment factors): getProfitForCrop
