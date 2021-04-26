@@ -46,21 +46,21 @@ const getCostsForCrop = crop => crop.crop.costs * crop.numCrops;
 
 // Step 2: calculate revenue for a crop (with no environment factors)
   // sale_price is per kg, so we need yield for crop * sale_price
-const getRevenueForCrop = crop => getYieldForCrop(crop) * crop.crop.salePrice;
+const getRevenueForCrop = (crop, environmentFactors) =>
+  getYieldForCrop(crop, environmentFactors) * crop.crop.salePrice;
 
 // Step 3: calculate the profit for a crop (with no environment factors)
   // profit for crop = revenue for crop - costs for crop
-const getProfitForCrop = (crop, environmentFactors) => {
-  if(!environmentFactors) {
+const getProfitForCrop = (crop) => {
+
     return getRevenueForCrop(crop) - getCostsForCrop(crop);
-  }
+
 }
   
 // Step 4: calculate the profit for multiple crops (with no environment factors)
-const getTotalProfit = ({ crops }, environmentFactors) =>
-  crops
+const getTotalProfit = ({ crops }) => crops
     // go through crops and get profit for each crop
-    .map((crop) => getProfitForCrop(crop, environmentFactors))
+    .map((crop) => getProfitForCrop(crop))
     // add the profit for each crop to get total profit
     .reduce((acc, cValue) => acc + cValue);
 
