@@ -78,7 +78,7 @@ describe("getCostsForCrop", () => {
   })
 });
 
-// Step 2: calculate revenue for a crop (with no environment factors): getRevenueForCrop
+// Step 2: calculate revenue for a crop: getRevenueForCrop
 
 describe("getRevenueForCrop", () => {
   test("Calculate revenue for a crop, no environment factors", () => {
@@ -153,7 +153,7 @@ describe("getRevenueForCrop", () => {
   });
 });
 
-// Step 3: calculate the profit for a crop (with no environment factors): getProfitForCrop
+// Step 3: calculate the profit for a crop: getProfitForCrop
 
 describe("getProfitForCrop", () => {
   test("Calculate the profit for a crop, no environment factors ", () => {
@@ -169,9 +169,70 @@ describe("getProfitForCrop", () => {
     };
     expect(getProfitForCrop(input)).toBe(50);
   });
+
+  test("Calculate the profit for a crop with environment factors, sun high ", () => {
+    const corn = {
+      name: "corn",
+      yield: 3,
+      costs: 1,
+      salePrice: 2,
+      factors: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+      },
+    };
+
+    const input = {
+      crop: corn,
+      numCrops: 10,
+    };
+
+    const environmentFactors = {
+      sun: "high",
+    };
+
+    expect(getProfitForCrop(input, environmentFactors)).toBe(80);
+  });
+
+  test("Calculate the profit for a crop with environment factors, sun high, wind high ", () => {
+    const corn = {
+      name: "corn",
+      yield: 3,
+      costs: 1,
+      salePrice: 2,
+      factors: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+        wind: {
+          low: 0,
+          medium: -30,
+          high: -60,
+        },
+      },
+    };
+
+    const input = {
+      crop: corn,
+      numCrops: 10,
+    };
+
+    const environmentFactors = {
+      sun: "high",
+      wind: "high",
+    };
+
+    expect(getProfitForCrop(input, environmentFactors)).toBe(26);
+  });
+
 });
 
-// Step 4: calculate the profit for multiple crops (with no environment factors): getTotalProfit
+// Step 4: calculate the profit for multiple crops: getTotalProfit
 
 describe("getTotalProfit", () => {
   test("Calculate the profit for multiple crops (no environment factors)", () => {
