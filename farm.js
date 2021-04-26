@@ -54,9 +54,9 @@ const getRevenueForCrop = (crop, environmentFactors) =>
 const getProfitForCrop = (crop, environmentFactors) => getRevenueForCrop(crop, environmentFactors) - getCostsForCrop(crop);
   
 // Step 4: calculate the profit for multiple crops (with no environment factors)
-const getTotalProfit = ({ crops }) => crops
+const getTotalProfit = ({ crops }, environmentFactors) => crops
     // go through crops and get profit for each crop
-    .map((crop) => getProfitForCrop(crop))
+    .map((crop) => getProfitForCrop(crop, environmentFactors))
     // add the profit for each crop to get total profit
     .reduce((acc, cValue) => acc + cValue);
 
