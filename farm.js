@@ -25,16 +25,13 @@ const getYieldForPlant = (plant, environmentFactors = 0) => {
   return plant.yield;
 };
 
-// console.log(getYieldForPlant(corn, environmentFactors));
-
-
 // calculate yield for entire crop of specific plant
 const getYieldForCrop = (crop, environmentFactors) => {
-if (!environmentFactors) {
-  return crop.crop.yield * crop.numCrops;
-} else {
-  getYieldForPlant(crop.crop, environmentFactors) * crop.numCrops;
-}
+  if (!environmentFactors) {
+    return crop.crop.yield * crop.numCrops;
+  } else {
+    return getYieldForPlant(crop.crop, environmentFactors) * crop.numCrops;
+  }
 };
 
 // calculate total yield of crops of several plants
