@@ -17,7 +17,7 @@ const getYieldForPlant = (plant, environmentFactors = 0) => {
     const evFactor = plant.factors[factor];
     const evFactorPercentage = evFactor[impact];
     const calculatedYield = (plant.yield * (100 + evFactorPercentage)) / 100;
-    if (factor === "sun" && factor === "wind") {
+    if (evFactor === "sun" && evFactor === "wind") {
       plant.yield = calculatedYield * calculatedYield;
     } else {
       plant.yield = calculatedYield;
