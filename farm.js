@@ -14,13 +14,18 @@ const getYieldForPlant = (plant, environmentFactors = 0) => {
   // how to get keys-values from object
   // https://dmitripavlutin.com/access-object-keys-values-entries/#3-objectentries-returns-entries
   for (const [factor, impact] of Object.entries(environmentFactors)) {
-    const evFactor = plant.factors[factor];
-    const evFactorPercentage = evFactor[impact];
-    const calculatedYield = (plant.yield * (100 + evFactorPercentage)) / 100;
-    if (evFactor === "sun" && evFactor === "wind") {
-      plant.yield = calculatedYield * calculatedYield;
-    } else {
-      plant.yield = calculatedYield;
+    // first check if a plant or crop has factors and if these factors
+    // are also in environmental factors
+    if (plant.factors && plant.factors[factor]) {
+      const evFactor = plant.factors[factor];
+      const evFactorPercentage = evFactor[impact];
+      const calculatedYield = (plant.yield * (100 + evFactorPercentage)) / 100;
+      // calculate the yield
+      if (evFactor === "sun" && evFactor === "wind") {
+        plant.yield = calculatedYield * calculatedYield;
+      } else {
+        plant.yield = calculatedYield;
+      }
     }
   }
   return plant.yield;
